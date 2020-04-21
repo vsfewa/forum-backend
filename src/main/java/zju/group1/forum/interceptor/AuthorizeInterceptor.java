@@ -42,14 +42,15 @@ public class AuthorizeInterceptor implements HandlerInterceptor {
             return true;
         HandlerMethod handlerMethod = (HandlerMethod) handler;
         Method method = handlerMethod.getMethod();
-
+        System.out.println(request);
+        System.out.println(handler);
         if (method.getAnnotation(AuthToken.class) != null || handlerMethod.getBeanType().getAnnotation(AuthToken.class) != null) {
             String requestToken = request.getParameter(httpHeaderName);
             if (requestToken == null) {
+                System.out.println(requestToken);
                 sendUnAuthorizedInfo(response);
                 return false;
             }
-
 
             String authorizedName = redisProvider.getAuthorizedName(requestToken);
             if (authorizedName == null){
@@ -57,7 +58,6 @@ public class AuthorizeInterceptor implements HandlerInterceptor {
                 return false;
             }
         }
-
         return true;
     }
 }

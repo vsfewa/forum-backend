@@ -15,9 +15,12 @@ public interface UserMapper {
     @Select("select password from user where email = #{email}")
     String verifyUser(String email);
 
-    @Update("update Forum set password = #{password} where email = #{email} ")
+    @Update("update user set password = #{password} where email = #{email} ")
     void updatePassword(String email, String password);
 
     @Select("select count(*) from user where email=#{email}")
     int isUserExist(User user);
+
+    @Select("select name from user where email = #{email}")
+    String searchName(String email);
 }
