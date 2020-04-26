@@ -28,17 +28,14 @@ public class UserInfoController {
     @ApiOperation("查看个人信息")
     @PostMapping(value = "/personinfo")
     @AuthToken
-    public ModelAndView queryInfo(@RequestParam("authorizeToken") String authorizeToken) throws IOException {
+    public InfoMessage queryinfo(@RequestParam("authorizeToken") String authorizeToken) throws IOException {
         InfoMessage infoMessage = new InfoMessage();
-        ModelAndView mv = new ModelAndView();
 
         if (authorizeToken == null) {
             infoMessage.setState(false);
             infoMessage.setMessage("请重新登录");
             infoMessage.setAuthorizeToken(authorizeToken);
-            mv.addObject("queryinfo", infoMessage);
-            mv.setViewName("personinfo");
-            return mv;
+            return infoMessage;
         }
 
         String email = redisProvider.getAuthorizedName("authorizeToken");
@@ -46,9 +43,7 @@ public class UserInfoController {
             infoMessage.setState(false);
             infoMessage.setMessage("无当前用户，请重新注册/登录");
             infoMessage.setAuthorizeToken(authorizeToken);
-            mv.addObject("queryinfo", infoMessage);
-            mv.setViewName("personinfo");
-            return mv;
+            return infoMessage;
         }
 
         if (userInfoMapper.isUserInfoExist(email) == 0) {
@@ -77,27 +72,22 @@ public class UserInfoController {
         infoMessage.setPhone_hidden(userInfo.getPhone_hidden());
         infoMessage.setSignature(userInfo.getSignature());
          */
-        mv.addObject("queryinfo", infoMessage);
-        mv.setViewName("personinfo");
-        return mv;
+        return infoMessage;
     }
 
 
     @ApiOperation("修改个人信息")
     @PostMapping(value = "/modifyinfo")
     @AuthToken
-    public ModelAndView editInfo(@RequestParam("authorizeToken") String authorizeToken,
+    public InfoMessage editinfo(@RequestParam("authorizeToken") String authorizeToken,
                                        @RequestParam("info") InfoMessage newInfo) throws IOException {
         InfoMessage infoMessage = new InfoMessage();
-        ModelAndView mv = new ModelAndView();
 
         if (authorizeToken == null) {
             infoMessage.setState(false);
             infoMessage.setMessage("请重新登录");
             infoMessage.setAuthorizeToken(authorizeToken);
-            mv.addObject("editinfo", infoMessage);
-            mv.setViewName("personinfo");
-            return mv;
+            return infoMessage;
         }
 
         String email = redisProvider.getAuthorizedName("authorizeToken");
@@ -105,9 +95,7 @@ public class UserInfoController {
             infoMessage.setState(false);
             infoMessage.setMessage("无当前用户，请重新注册/登录");
             infoMessage.setAuthorizeToken(authorizeToken);
-            mv.addObject("editinfo", infoMessage);
-            mv.setViewName("personinfo");
-            return mv;
+            return infoMessage;
         }
 
         UserInfo newUserInfo = new UserInfo(newInfo);
@@ -116,9 +104,7 @@ public class UserInfoController {
         infoMessage.setMessage("修改成功！");
         infoMessage.setAuthorizeToken(authorizeToken);
         infoMessage.setInfo(newUserInfo);
-        mv.addObject("editinfo", infoMessage);
-        mv.setViewName("personinfo");
 
-        return mv;
+        return infoMessage;
     }
 }
