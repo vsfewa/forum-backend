@@ -26,7 +26,7 @@ public class UserInfoController {
     private RedisProvider redisProvider;
 
     @ApiOperation("查看个人信息")
-    @PostMapping(value = "/personinfo")
+    @PostMapping(value = "/queryinfo")
     @AuthToken
     public InfoMessage queryinfo(@RequestParam("authorizeToken") String authorizeToken) throws IOException {
         InfoMessage infoMessage = new InfoMessage();
@@ -78,7 +78,7 @@ public class UserInfoController {
 
 
     @ApiOperation("修改个人信息")
-    @PostMapping(value = "/modifyinfo")
+    @PostMapping(value = "/editinfo")
     @AuthToken
     public InfoMessage editinfo(@RequestParam("authorizeToken") String authorizeToken,
                                        @RequestParam("info") InfoMessage newInfo) throws IOException {
