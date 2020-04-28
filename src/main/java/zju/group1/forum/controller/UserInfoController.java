@@ -82,7 +82,7 @@ public class UserInfoController {
 
 
     @ApiOperation("修改个人信息")
-    @PostMapping(value = "/editinfo")
+    @RequestMapping(value = "/editinfo")
     @AuthToken
     public InfoMessage editinfo(@RequestParam("token") String token,
                                 @RequestParam("Authorization") String authorizaToken,
