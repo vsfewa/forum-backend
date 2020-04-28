@@ -9,7 +9,7 @@ import zju.group1.forum.dto.UserInfo;
 @Mapper
 public interface UserInfoMapper {
 
-    @Insert("insert into user_info (email) values #{email}")
+    @Insert("insert into user_info (email) values (#{email})")
     void createUserInfo(String email);
 
     @Select("select count(*) from user_info where email=#{email}")
