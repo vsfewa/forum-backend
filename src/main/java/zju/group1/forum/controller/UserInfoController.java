@@ -101,8 +101,8 @@ public class UserInfoController {
                                 @RequestParam("signature") String signature) throws IOException {
         InfoMessage infoMessage = new InfoMessage();
         //debug
-        SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.ENGLISH);
-        Date birth1 = new java.sql.Date(sdf.parse(birth).getTime());
+        //SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.ENGLISH);
+        //Date birth1 = new java.sql.Date(sdf.parse(birth).getTime());
         infoMessage.setState(true);
         infoMessage.setMessage("修改成功！");
         infoMessage.setAuthorizeToken(authorizaToken);
