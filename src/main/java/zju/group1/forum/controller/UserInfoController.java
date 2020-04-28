@@ -86,7 +86,7 @@ public class UserInfoController {
     @AuthToken
     public InfoMessage editinfo(@RequestParam("token") String token,
                                 @RequestParam("Authorization") String authorizaToken,
-                                @RequestParam("birth") String birth,
+                                @RequestParam("birth") Date birth,
                                 @RequestParam("birth_hidden") Integer birth_hidden,
                                 @RequestParam("gender") String gender,
                                 @RequestParam("gender_hidden") Integer gender_hidden,
