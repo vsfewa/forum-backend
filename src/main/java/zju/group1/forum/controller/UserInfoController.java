@@ -114,6 +114,7 @@ public class UserInfoController {
         SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.ENGLISH);
         Date birth1 = new java.sql.Date(sdf.parse(birth).getTime());
 
+
         UserInfo newUserInfo = new UserInfo();
         newUserInfo.setEmail(email);
         newUserInfo.setEamil_hidden(1);
