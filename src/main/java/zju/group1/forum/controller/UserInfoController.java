@@ -85,8 +85,8 @@ public class UserInfoController {
     @RequestMapping(value = "/editinfo")
     @AuthToken
     public InfoMessage editinfo(@RequestParam("token") String token,
-                                @RequestParam("Authorization") Date authorizaToken,
-                                @RequestParam("birth") Date birth,
+                                @RequestParam("Authorization") String authorizaToken,
+                                @RequestParam("birth") String birth,
                                 @RequestParam("birth_hidden") Integer birth_hidden,
                                 @RequestParam("gender") String gender,
                                 @RequestParam("gender_hidden") Integer gender_hidden,
@@ -100,16 +100,6 @@ public class UserInfoController {
                                 @RequestParam("organization_hidden") Integer organization_hidden,
                                 @RequestParam("signature") String signature) throws IOException {
         InfoMessage infoMessage = new InfoMessage();
-        //debug
-        //SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.ENGLISH);
-        //Date birth1 = new java.sql.Date(sdf.parse(birth).getTime());
-        infoMessage.setState(true);
-        infoMessage.setMessage("修改成功！");
-        infoMessage.setAuthorizeToken(authorizaToken);
-        infoMessage.setBirth(birth1);
-        return infoMessage;
-        //debug
-
 
         if (authorizaToken == null) {
             infoMessage.setState(false);
@@ -126,13 +116,13 @@ public class UserInfoController {
             return infoMessage;
         }
 
-        SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.ENGLISH);
-        Date birth1 = new java.sql.Date(sdf.parse(birth).getTime());
+        //SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.ENGLISH);
+        //Date birth1 = new java.sql.Date(sdf.parse(birth).getTime());
 
         UserInfo newUserInfo = new UserInfo();
         newUserInfo.setEmail(email);
         newUserInfo.setEamil_hidden(1);
-        newUserInfo.setBirth(birth1);
+        //newUserInfo.setBirth(birth1);
         newUserInfo.setBirth_hidden(birth_hidden);
         newUserInfo.setGender(gender);
         newUserInfo.setGender_hidden(gender_hidden);
