@@ -122,7 +122,7 @@ public class UserInfoController {
         UserInfo newUserInfo = new UserInfo();
         newUserInfo.setEmail(email);
         newUserInfo.setEamil_hidden(1);
-        newUserInfo.setBirth(birth);
+        newUserInfo.setBirth(birth1);
         newUserInfo.setBirth_hidden(birth_hidden);
         newUserInfo.setGender(gender);
         newUserInfo.setGender_hidden(gender_hidden);
