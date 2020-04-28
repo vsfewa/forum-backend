@@ -81,7 +81,7 @@ public class UserInfoController {
     @PostMapping(value = "/editinfo")
     @AuthToken
     public InfoMessage editinfo(@RequestParam("token") String authorizaToken,
-                                @RequestParam("birth") Date birth,
+                                @RequestParam("birth") String birth,
                                 @RequestParam("birth_hidden") Integer birth_hidden,
                                 @RequestParam("gender") String gender,
                                 @RequestParam("gender_hidden") Integer gender_hidden,
@@ -111,10 +111,13 @@ public class UserInfoController {
             return infoMessage;
         }
 
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.ENGLISH);
+        Date birth1 = sdf.parse(birth);
+
         UserInfo newUserInfo = new UserInfo();
         newUserInfo.setEmail(email);
         newUserInfo.setEamil_hidden(1);
-        newUserInfo.setBirth(birth);
+        newUserInfo.setBirth(birth1);
         newUserInfo.setBirth_hidden(birth_hidden);
         newUserInfo.setGender(gender);
         newUserInfo.setGender_hidden(gender_hidden);
