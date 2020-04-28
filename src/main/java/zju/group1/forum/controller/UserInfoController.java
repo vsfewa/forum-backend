@@ -116,13 +116,13 @@ public class UserInfoController {
             return infoMessage;
         }
 
-        //SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.ENGLISH);
-        //Date birth1 = new java.sql.Date(sdf.parse(birth).getTime());
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.ENGLISH);
+        Date birth1 = new java.sql.Date(sdf.parse(birth).getTime());
 
         UserInfo newUserInfo = new UserInfo();
         newUserInfo.setEmail(email);
         newUserInfo.setEamil_hidden(1);
-        //newUserInfo.setBirth(birth1);
+        newUserInfo.setBirth(birth1);
         newUserInfo.setBirth_hidden(birth_hidden);
         newUserInfo.setGender(gender);
         newUserInfo.setGender_hidden(gender_hidden);
