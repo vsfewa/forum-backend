@@ -14,7 +14,7 @@ public class InfoMessage {
     private String real_name;
     private int real_name_hidden;
 
-    //@DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth;
     private int birth_hidden;
 
