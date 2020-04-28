@@ -7,7 +7,7 @@ services:
     container_name: backend
     # 映射容器2000端口到本地8080端口
     ports:
-      - "2000:8080"
+      - "8080:8080"
     volumes:
       - ./:/usr/share
     # 覆盖容器启动后默认执行的命令。
