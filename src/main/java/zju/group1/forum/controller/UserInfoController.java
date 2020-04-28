@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import java.sql.Date;
 import zju.group1.forum.dto.InfoMessage;
 import zju.group1.forum.dto.UserInfo;
 import zju.group1.forum.interceptor.AuthToken;
@@ -80,7 +81,19 @@ public class UserInfoController {
     @PostMapping(value = "/editinfo")
     @AuthToken
     public InfoMessage editinfo(@RequestParam("token") String authorizaToken,
-                                       @RequestParam("info") InfoMessage newInfo) throws IOException {
+                                @RequestParam("birth") Date birth,
+                                @RequestParam("birth_hidden") Integer birth_hidden,
+                                @RequestParam("gender") String gender,
+                                @RequestParam("gender_hidden") Integer gender_hidden,
+                                @RequestParam("phone") String phone,
+                                @RequestParam("phone_hidden") Integer phone_hidden,
+                                @RequestParam("real_name") String real_name,
+                                @RequestParam("real_name_hidden") Integer real_name_hidden,
+                                @RequestParam("hometown") String hometown,
+                                @RequestParam("hometown_hidden") Integer hometown_hidden,
+                                @RequestParam("organization") String organization,
+                                @RequestParam("organization_hidden") Integer organization_hidden,
+                                @RequestParam("signature") String signature) throws IOException {
         InfoMessage infoMessage = new InfoMessage();
 
         if (authorizaToken == null) {
@@ -98,7 +111,23 @@ public class UserInfoController {
             return infoMessage;
         }
 
-        UserInfo newUserInfo = new UserInfo(newInfo);
+        UserInfo newUserInfo = new UserInfo();
+        newUserInfo.setEmail(email);
+        newUserInfo.setEamil_hidden(1);
+        newUserInfo.setBirth(birth);
+        newUserInfo.setBirth_hidden(birth_hidden);
+        newUserInfo.setGender(gender);
+        newUserInfo.setGender_hidden(gender_hidden);
+        newUserInfo.setHometown(hometown);
+        newUserInfo.setHometown_hidden(hometown_hidden);
+        newUserInfo.setOrganization(organization);
+        newUserInfo.setOrganization_hidden(organization_hidden);
+        newUserInfo.setPhone(phone);
+        newUserInfo.setPhone_hidden(phone_hidden);
+        newUserInfo.setReal_name(real_name);
+        newUserInfo.setReal_name_hidden(real_name_hidden);
+        newUserInfo.setSignature(signature);
+
         userInfoMapper.updateUserInfo(email, newUserInfo);
         infoMessage.setState(true);
         infoMessage.setMessage("修改成功！");

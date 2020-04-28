@@ -18,7 +18,7 @@ public interface UserInfoMapper {
     @Select("select * from user_info where email=#{email}")
     UserInfo getUserInfo(String email);
 
-    @Update("update user_info set email = #{info.email}, eamil = #{info.eamil_hidden}, real_name = #{info.real_name}" +
+    @Update("update user_info set real_name = #{info.real_name}" +
             "real_name_hidden = #{info.real_name_hidden}, birth = #{info.birth}, birth_hidden = #{info.birth_hidden}" +
             "phone = #{info.phone}, phone_hidden = #{info.phone_hidden}, gender = #{info.gender}" +
             "gender_hidden = #{info.gender_hidden}, hometown = #{info.hometown}, hometown_hidden = #{info.hometown_hidden}" +
