@@ -119,6 +119,13 @@ public class UserInfoController {
         SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.ENGLISH);
         Date birth1 = new java.sql.Date(sdf.parse(birth).getTime());
 
+        //debug
+        infoMessage.setState(true);
+        infoMessage.setMessage("修改成功！");
+        infoMessage.setAuthorizeToken(authorizaToken);
+        infoMessage.setBirth(birth1);
+        return infoMessage;
+        //debug
 
         UserInfo newUserInfo = new UserInfo();
         newUserInfo.setEmail(email);
