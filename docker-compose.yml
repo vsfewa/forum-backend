@@ -5,7 +5,7 @@ services:
     # 镜像:版本
     image: java:8
     container_name: backend
-    # 映射容器2000端口到本地8080端口
+    # 映射容器8080端口到本地8080端口
     ports:
       - "8080:8080"
     volumes:

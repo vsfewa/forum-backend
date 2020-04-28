@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 import zju.group1.forum.dto.InfoMessage;
 import zju.group1.forum.dto.UserInfo;
 import zju.group1.forum.interceptor.AuthToken;
@@ -28,21 +27,21 @@ public class UserInfoController {
     @ApiOperation("查看个人信息")
     @PostMapping(value = "/queryinfo")
     @AuthToken
-    public InfoMessage queryinfo(@RequestParam("authorizeToken") String authorizeToken) throws IOException {
+    public InfoMessage queryinfo(@RequestParam("token") String authorizaToken) throws IOException {
         InfoMessage infoMessage = new InfoMessage();
 
-        if (authorizeToken == null) {
+        if (authorizaToken == null) {
             infoMessage.setState(false);
             infoMessage.setMessage("请重新登录");
-            infoMessage.setAuthorizeToken(authorizeToken);
+            infoMessage.setAuthorizeToken(authorizaToken);
             return infoMessage;
         }
 
-        String email = redisProvider.getAuthorizedName("authorizeToken");
+        String email = redisProvider.getAuthorizedName(authorizaToken);
         if (email == null) {
             infoMessage.setState(false);
             infoMessage.setMessage("无当前用户，请重新注册/登录");
-            infoMessage.setAuthorizeToken(authorizeToken);
+            infoMessage.setAuthorizeToken(authorizaToken);
             return infoMessage;
         }
 
@@ -53,7 +52,7 @@ public class UserInfoController {
 
         infoMessage.setState(true);
         infoMessage.setMessage("查询成功！");
-        infoMessage.setAuthorizeToken(authorizeToken);
+        infoMessage.setAuthorizeToken(authorizaToken);
         infoMessage.setInfo(userInfo);
         /*
         infoMessage.setReal_name(userInfo.getReal_name());
@@ -80,22 +79,22 @@ public class UserInfoController {
     @ApiOperation("修改个人信息")
     @PostMapping(value = "/editinfo")
     @AuthToken
-    public InfoMessage editinfo(@RequestParam("authorizeToken") String authorizeToken,
+    public InfoMessage editinfo(@RequestParam("token") String authorizaToken,
                                        @RequestParam("info") InfoMessage newInfo) throws IOException {
         InfoMessage infoMessage = new InfoMessage();
 
-        if (authorizeToken == null) {
+        if (authorizaToken == null) {
             infoMessage.setState(false);
             infoMessage.setMessage("请重新登录");
-            infoMessage.setAuthorizeToken(authorizeToken);
+            infoMessage.setAuthorizeToken(authorizaToken);
             return infoMessage;
         }
 
-        String email = redisProvider.getAuthorizedName("authorizeToken");
+        String email = redisProvider.getAuthorizedName(authorizaToken);
         if (email == null) {
             infoMessage.setState(false);
             infoMessage.setMessage("无当前用户，请重新注册/登录");
-            infoMessage.setAuthorizeToken(authorizeToken);
+            infoMessage.setAuthorizeToken(authorizaToken);
             return infoMessage;
         }
 
@@ -103,7 +102,7 @@ public class UserInfoController {
         userInfoMapper.updateUserInfo(email, newUserInfo);
         infoMessage.setState(true);
         infoMessage.setMessage("修改成功！");
-        infoMessage.setAuthorizeToken(authorizeToken);
+        infoMessage.setAuthorizeToken(authorizaToken);
         infoMessage.setInfo(newUserInfo);
 
         return infoMessage;
