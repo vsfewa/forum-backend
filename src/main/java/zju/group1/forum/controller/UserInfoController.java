@@ -100,6 +100,7 @@ public class UserInfoController {
                                 @RequestParam("organization_hidden") Integer organization_hidden,
                                 @RequestParam("signature") String signature) throws IOException {
         InfoMessage infoMessage = new InfoMessage();
+        return infoMessage;
 
         if (authorizaToken == null) {
             infoMessage.setState(false);
