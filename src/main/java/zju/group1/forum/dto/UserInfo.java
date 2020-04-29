@@ -11,7 +11,7 @@ public class UserInfo {
     private String real_name;//varchar(50)
     private int real_name_hidden;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    // @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth;//做成下拉，最后说明传回的类型
     private int birth_hidden;
 
