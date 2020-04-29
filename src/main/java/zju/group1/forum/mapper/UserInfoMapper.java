@@ -18,11 +18,11 @@ public interface UserInfoMapper {
     @Select("select * from user_info where email=#{email}")
     UserInfo getUserInfo(String email);
 
-    @Update("update user_info set real_name = #{info.real_name}" +
-            "real_name_hidden = #{info.real_name_hidden}, birth = #{info.birth}, birth_hidden = #{info.birth_hidden}" +
-            "phone = #{info.phone}, phone_hidden = #{info.phone_hidden}, gender = #{info.gender}" +
-            "gender_hidden = #{info.gender_hidden}, hometown = #{info.hometown}, hometown_hidden = #{info.hometown_hidden}" +
-            "organization = #{info.organization}, organization_hidden = #{info.organization_hidden}" +
-            "signature = #{info.signature} where email = #{info.email}")
+    @Update("update user_info set real_name = #{real_name}" +
+            "real_name_hidden = #{real_name_hidden}, birth = #{birth}, birth_hidden = #{birth_hidden}" +
+            "phone = #{phone}, phone_hidden = #{phone_hidden}, gender = #{gender}" +
+            "gender_hidden = #{gender_hidden}, hometown = #{hometown}, hometown_hidden = #{hometown_hidden}" +
+            "organization = #{organization}, organization_hidden = #{organization_hidden}" +
+            "signature = #{signature} where email = #{email}")
     void updateUserInfo(String email, UserInfo info);
 }
