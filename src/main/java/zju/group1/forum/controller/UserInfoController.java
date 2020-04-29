@@ -100,8 +100,7 @@ public class UserInfoController {
                                 @RequestParam("organization_hidden") Integer organization_hidden,
                                 @RequestParam("signature") String signature) throws IOException {
         InfoMessage infoMessage = new InfoMessage();
-        return infoMessage;
-
+/*
         if (authorizaToken == null) {
             infoMessage.setState(false);
             infoMessage.setMessage("请重新登录");
@@ -142,7 +141,7 @@ public class UserInfoController {
         infoMessage.setMessage("修改成功！");
         infoMessage.setAuthorizeToken(authorizaToken);
         infoMessage.setInfo(newUserInfo);
-
+*/
         return infoMessage;
     }
 }
