@@ -141,7 +141,7 @@ public class UserInfoController {
         newUserInfo.setReal_name_hidden(real_name_hidden);
         newUserInfo.setSignature(signature);
 
-        userInfoMapper.updateUserInfo(email, newUserInfo);
+        userInfoMapper.updateUserInfo(newUserInfo);
         infoMessage.setState(true);
         infoMessage.setMessage("修改成功！");
         infoMessage.setAuthorizeToken(authorizaToken);

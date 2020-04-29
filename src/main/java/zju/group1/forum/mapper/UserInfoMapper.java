@@ -24,5 +24,5 @@ public interface UserInfoMapper {
             "gender_hidden = #{gender_hidden}, hometown = #{hometown}, hometown_hidden = #{hometown_hidden}" +
             "organization = #{organization}, organization_hidden = #{organization_hidden}" +
             "signature = #{signature} where email = #{email}")
-    void updateUserInfo(String email, UserInfo info);
+    void updateUserInfo(UserInfo info);
 }
