@@ -82,7 +82,7 @@ public class UserInfoController {
 
 
     @ApiOperation("修改个人信息")
-    @RequestMapping(value = "/editinfo")
+    @PostMapping(value = "/editinfo")
     @AuthToken
     public InfoMessage editinfo(@RequestParam("token") String token,
                                 @RequestParam("Authorization") String authorizaToken,
@@ -98,8 +98,8 @@ public class UserInfoController {
                                 @RequestParam("hometown_hidden") Integer hometown_hidden,
                                 @RequestParam("organization") String organization,
                                 @RequestParam("organization_hidden") Integer organization_hidden,
-                                @RequestParam("signature") String signature) throws IOException {
- /*       InfoMessage infoMessage = new InfoMessage();
+                                @RequestParam("signature") String signature) throws IOException, ParseException  {
+        InfoMessage infoMessage = new InfoMessage();
 
         if (authorizaToken == null) {
             infoMessage.setState(false);
@@ -116,8 +116,13 @@ public class UserInfoController {
             return infoMessage;
         }
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-        Date birth1 = new java.sql.Date(sdf.parse(birth).getTime());
+        Date birth1;
+        if (birth.equals("")) {
+            birth1 = new java.sql.Date(0);
+        } else {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            birth1 = new java.sql.Date(sdf.parse(birth).getTime());
+        }
 
         UserInfo newUserInfo = new UserInfo();
         newUserInfo.setEmail(email);
@@ -141,7 +146,7 @@ public class UserInfoController {
         infoMessage.setMessage("修改成功！");
         infoMessage.setAuthorizeToken(authorizaToken);
         infoMessage.setInfo(newUserInfo);
-*/
-        return null;
+
+        return infoMessage;
     }
 }
