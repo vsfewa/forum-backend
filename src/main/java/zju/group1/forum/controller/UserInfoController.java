@@ -120,7 +120,7 @@ public class UserInfoController {
         if (birth.equals("")) {
             birth1 = new java.sql.Date(0);
         } else {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             birth1 = new java.sql.Date(sdf.parse(birth).getTime());
         }
 
