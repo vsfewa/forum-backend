@@ -13,6 +13,7 @@ import zju.group1.forum.provider.RedisProvider;
 import zju.group1.forum.service.EncryptService;
 import zju.group1.forum.service.MailService;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -22,7 +23,7 @@ import java.util.UUID;
 @Api(tags = "注册")
 @RestController
 public class RegisterController {
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     @Autowired

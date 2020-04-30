@@ -10,6 +10,7 @@ import zju.group1.forum.dto.Message;
 import zju.group1.forum.interceptor.AuthToken;
 import zju.group1.forum.mapper.UserMapper;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -17,7 +18,7 @@ import java.io.IOException;
 @Api(tags = "修改密码")
 @RestController
 public class ModifyController {
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
 

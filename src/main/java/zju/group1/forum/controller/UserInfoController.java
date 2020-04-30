@@ -12,6 +12,7 @@ import zju.group1.forum.interceptor.AuthToken;
 import zju.group1.forum.mapper.UserInfoMapper;
 import zju.group1.forum.provider.RedisProvider;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
@@ -23,7 +24,7 @@ import java.util.Locale;
 @RestController
 public class UserInfoController {
 
-    @Autowired
+    @Resource
     private UserInfoMapper userInfoMapper;
 
     @Autowired

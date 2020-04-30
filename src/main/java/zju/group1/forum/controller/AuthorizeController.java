@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import zju.group1.forum.provider.RedisProvider;
 import zju.group1.forum.service.EncryptService;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.UUID;
@@ -38,7 +39,7 @@ public class AuthorizeController {
     @Value("${github.redirect.uri}")
     private String RedirectURI;
 
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     @ApiOperation("Github登录")
