@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import zju.group1.forum.dto.BoardMessage;
-import zju.group1.forum.dto.Postings;
+import zju.group1.forum.dto.Posting;
 import zju.group1.forum.interceptor.AuthToken;
 import zju.group1.forum.mapper.PostingsMapper;
 
@@ -34,9 +34,9 @@ public class BoardController {
             return message;
         }
 
-        List<Postings> postingsList = postingsMapper.listStudy();
+        List<Posting> postingList = postingsMapper.listStudy();
         message.setState(true);
-        message.setPostings(postingsList);
+        message.setPostings(postingList);
         message.setMessage("获取学习板块帖子成功");
         return message;
     }
@@ -53,9 +53,9 @@ public class BoardController {
             return message;
         }
 
-        List<Postings> postingsList = postingsMapper.listEmotion();
+        List<Posting> postingList = postingsMapper.listEmotion();
         message.setState(true);
-        message.setPostings(postingsList);
+        message.setPostings(postingList);
         message.setMessage("获取情感板块帖子成功");
         return message;
     }
@@ -72,9 +72,9 @@ public class BoardController {
             return message;
         }
 
-        List<Postings> postingsList = postingsMapper.listInformation();
+        List<Posting> postingList = postingsMapper.listInformation();
         message.setState(true);
-        message.setPostings(postingsList);
+        message.setPostings(postingList);
         message.setMessage("获取校园信息板块帖子成功");
         return message;
     }
@@ -91,9 +91,9 @@ public class BoardController {
             return message;
         }
 
-        List<Postings> postingsList = postingsMapper.listIntern();
+        List<Posting> postingList = postingsMapper.listIntern();
         message.setState(true);
-        message.setPostings(postingsList);
+        message.setPostings(postingList);
         message.setMessage("获取实习信息板块帖子成功");
         return message;
     }

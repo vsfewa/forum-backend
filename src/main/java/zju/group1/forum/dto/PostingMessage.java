@@ -5,13 +5,15 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
+import java.util.List;
 
 @Data
-public class Postings {
-    private int id;
+public class PostingMessage {
+    private boolean state;
+    private String message;
+    private String authorizeToken;
     private String author;
     private String title;
-    private int type;
     private String content;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(
@@ -21,5 +23,15 @@ public class Postings {
     private Date time;
     private int replyN;
     private int visitN;
+    private List<Reply> replyList;
 
+    public void setPostingInfo(Posting posting){
+        setAuthor(posting.getAuthor());
+        setTitle(posting.getTitle());
+        setContent(posting.getContent());
+        setTime(posting.getTime());
+        setReplyN(posting.getReplyN());
+        setVisitN(posting.getVisitN());
+        return;
+    }
 }

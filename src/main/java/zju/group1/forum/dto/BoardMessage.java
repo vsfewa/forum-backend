@@ -8,5 +8,5 @@ public class BoardMessage {
     private boolean state;
     private String message;
     private String authorizeToken;
-    private List<Postings> postings;
+    private List<Posting> postings;
 }
