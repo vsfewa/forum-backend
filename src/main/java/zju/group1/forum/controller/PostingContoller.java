@@ -11,25 +11,21 @@ import zju.group1.forum.dto.Posting;
 import zju.group1.forum.dto.PostingMessage;
 import zju.group1.forum.interceptor.AuthToken;
 import zju.group1.forum.mapper.PostingsMapper;
-import zju.group1.forum.provider.RedisProvider;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.List;
 
 @Api(tags = "查看帖子")
 @RestController
 public class PostingContoller {
     @Resource
     private PostingsMapper postingsMapper;
-    @Autowired
-    private RedisProvider redisProvider;
 
     @ApiOperation("查看编号“postingID”的帖子")
     @PostMapping(value = "/postings/{postingID}")
     @AuthToken
     public PostingMessage checkPostings(@PathVariable("postingID") String posingID,
-                                 @RequestParam("token") String token) throws IOException {
+                                        @RequestParam("token") String token) throws IOException {
         PostingMessage message = new PostingMessage();
         if (token == null) {
             message.setState(false);
