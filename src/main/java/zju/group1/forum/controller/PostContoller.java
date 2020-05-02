@@ -33,7 +33,7 @@ public class PostContoller {
     public Message modifyPosting(@RequestParam("token") String token,
                                  @RequestParam("postingID") String postingID,
                                  @RequestParam("title") String title,
-                                 @RequestParam("conten") String content,
+                                 @RequestParam("content") String content,
                                  HttpServletRequest request) throws IOException {
         Message message = new Message();
         return message;

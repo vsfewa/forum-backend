@@ -14,9 +14,7 @@ import zju.group1.forum.provider.RedisProvider;
 import zju.group1.forum.service.EncryptService;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.UUID;
 
 @Api(tags = "登录")
 @RestController

@@ -17,4 +17,6 @@ public interface PostingsMapper {
     List<Postings> listInformation();
     @Select("select * from postings where type = 4")
     List<Postings> listIntern();
+    @Select("select * from postings where author = #{email}")
+    List<Postings> listPersonalPostings(String email);
 }
