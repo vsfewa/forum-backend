@@ -35,8 +35,10 @@ public class SwaggerService {
         private ApiInfo apiInfo() {
             return new ApiInfo(
                     "Forum交互文档",
-                    "本轮迭代人员-王钟毓-孔成俊",
-                    "V1.0.0",
+                    "第一轮 前端：陈诺，彭子帆 后端：王钟毓，孔成俊" +
+                            "第二轮 前端：王鹏，李林瀚 后端：陈思启，席吉华" +
+                            "第三轮 前端：代艺博，刘乐为 后端：彭子帆，王汀",
+                    "V3.0.0",
                     "https://github.com/orgs/ZJU-Forum-Project/dashboard",
                     new Contact("", "", ""),
                     "", "", Collections.emptyList());
