@@ -24,7 +24,7 @@ public class PostingContoller {
     @ApiOperation("查看编号“postingID”的帖子")
     @PostMapping(value = "/postings/{postingID}")
     @AuthToken
-    public PostingMessage checkPostings(@PathVariable("postingID") String posingID,
+    public PostingMessage checkPostings(@PathVariable("postingID") String postingID,
                                         @RequestParam("token") String token) throws IOException {
         PostingMessage message = new PostingMessage();
         if (token == null) {
@@ -33,10 +33,11 @@ public class PostingContoller {
             message.setAuthorizeToken(token);
             return message;
         }
-        Posting posting = postingsMapper.getPostingByID(posingID);
+        Posting posting = postingsMapper.getPostingByID(postingID);
         message.setState(true);
         message.setMessage("查看该贴成功！");
         message.setPostingInfo(posting);
+        postingsMapper.updateVisitNumber(postingID);
         /*============================*/
         /*!!!!!第四周迭代需完成回复!!!!!*/
         message.setReplyList(null);
