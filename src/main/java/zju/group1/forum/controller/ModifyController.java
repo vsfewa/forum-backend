@@ -34,8 +34,6 @@ public class ModifyController {
 
         HttpSession session = request.getSession();
         Object emailSession = session.getAttribute(email);
-        System.out.println("email:"+email);
-        System.out.println("emailsession:"+emailSession);
         if (emailSession == null || !emailSession.equals(token)) {
             message.setState(false);
             message.setMessage("输入的验证码有误或为空");
