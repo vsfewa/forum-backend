@@ -28,7 +28,7 @@ public class PersonalPostingController {
     @ApiOperation("查看个人帖子")
     @PostMapping(value = "/personalposting")
     @AuthToken
-    public BoardMessage personalPosting(@RequestParam("token") String token) throws IOException {
+    public BoardMessage personalPosting(@RequestParam("Authorization") String token) throws IOException {
         BoardMessage message = new BoardMessage();
         if (token == null) {
             message.setState(false);

@@ -4,7 +4,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import zju.group1.forum.dto.BoardMessage;
 import zju.group1.forum.dto.Posting;
@@ -12,7 +11,6 @@ import zju.group1.forum.interceptor.AuthToken;
 import zju.group1.forum.mapper.PostingsMapper;
 
 import javax.annotation.Resource;
-import java.io.IOException;
 import java.util.List;
 
 @Api(tags = "板块信息")
@@ -25,14 +23,8 @@ public class BoardController {
     @ApiOperation("学习板块")
     @PostMapping(value = "/study")
     @AuthToken
-    public BoardMessage studyBoard(@RequestParam("token") String token) throws IOException {
+    public BoardMessage studyBoard(){
         BoardMessage message = new BoardMessage();
-        if (token == null) {
-            message.setState(false);
-            message.setMessage("请重新登录");
-            message.setAuthorizeToken(token);
-            return message;
-        }
 
         List<Posting> postingList = postingsMapper.listStudy();
         message.setState(true);
@@ -44,14 +36,8 @@ public class BoardController {
     @ApiOperation("情感板块")
     @PostMapping(value = "/emotion")
     @AuthToken
-    public BoardMessage emotionBoard(@RequestParam("token") String token) throws IOException {
+    public BoardMessage emotionBoard(){
         BoardMessage message = new BoardMessage();
-        if (token == null) {
-            message.setState(false);
-            message.setMessage("请重新登录");
-            message.setAuthorizeToken(token);
-            return message;
-        }
 
         List<Posting> postingList = postingsMapper.listEmotion();
         message.setState(true);
@@ -63,14 +49,8 @@ public class BoardController {
     @ApiOperation("校园信息板块")
     @PostMapping(value = "/information")
     @AuthToken
-    public BoardMessage informationBoard(@RequestParam("token") String token) throws IOException {
+    public BoardMessage informationBoard(){
         BoardMessage message = new BoardMessage();
-        if (token == null) {
-            message.setState(false);
-            message.setMessage("请重新登录");
-            message.setAuthorizeToken(token);
-            return message;
-        }
 
         List<Posting> postingList = postingsMapper.listInformation();
         message.setState(true);
@@ -82,14 +62,8 @@ public class BoardController {
     @ApiOperation("实习信息板块")
     @PostMapping(value = "/intern")
     @AuthToken
-    public BoardMessage interBoard(@RequestParam("token") String token) throws IOException {
+    public BoardMessage interBoard(){
         BoardMessage message = new BoardMessage();
-        if (token == null) {
-            message.setState(false);
-            message.setMessage("请重新登录");
-            message.setAuthorizeToken(token);
-            return message;
-        }
 
         List<Posting> postingList = postingsMapper.listIntern();
         message.setState(true);

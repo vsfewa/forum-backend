@@ -30,10 +30,10 @@ public class PostContoller {
     @ApiOperation("发送帖子")
     @PostMapping(value = "/post")
     @AuthToken
-    public Message emotionBoard(@RequestParam("token") String token,
+    public Message emotionBoard(@RequestParam("Authorization") String token,
                                 @RequestParam("title") String title,
                                 @RequestParam("content") String content,
-                                @RequestParam("type") int type) throws IOException {
+                                @RequestParam("type") int type){
         Message message = new Message();
         if (token == null) {
             message.setState(false);
@@ -54,16 +54,16 @@ public class PostContoller {
             return message;
         }
 
-        Posting newPostings = new Posting();
+        Posting newPosting = new Posting();
         String email = redisProvider.getAuthorizedName(token);
         String name = userMapper.searchName(email);
-        newPostings.setAuthor(name);
-        newPostings.setTitle(title);
-        newPostings.setContent(content);
-        newPostings.setType(type);
+        newPosting.setAuthor(name);
+        newPosting.setTitle(title);
+        newPosting.setContent(content);
+        newPosting.setType(type);
         Date date = new Date(System.currentTimeMillis());
-        newPostings.setTime(date);
-        postingsMapper.Post(newPostings);
+        newPosting.setTime(date);
+        postingsMapper.Post(newPosting);
         message.setState(true);
         message.setMessage("发送帖子成功");
         return message;
@@ -71,34 +71,26 @@ public class PostContoller {
     @ApiOperation("修改帖子")
     @PostMapping(value = "/modifyposting")
     @AuthToken
-    public Message modifyPosting(@RequestParam("token") String token,
-                                 @RequestParam("postingID") String postingID,
+    public Message modifyPosting(@RequestParam("postingID") int postingID,
                                  @RequestParam("title") String title,
-                                 @RequestParam("content") String content) throws IOException {
+                                 @RequestParam("content") String content){
         Message message = new Message();
-        if (token == null) {
-            message.setState(false);
-            message.setMessage("请重新登录");
-            message.setAuthorizeToken(token);
-            return message;
-        }
         if (title == null) {
             message.setState(false);
             message.setMessage("标题不能为空");
-            message.setAuthorizeToken(token);
             return message;
         }
         if (content == null) {
             message.setState(false);
             message.setMessage("内容不能为空");
-            message.setAuthorizeToken(token);
             return message;
         }
 
-        Posting newPostings = new Posting();
-        newPostings.setTitle(title);
-        newPostings.setContent(content);
-        postingsMapper.modifyPosting(newPostings);
+        Posting newPosting = new Posting();
+        newPosting.setId(postingID);
+        newPosting.setTitle(title);
+        newPosting.setContent(content);
+        postingsMapper.modifyPosting(newPosting);
         message.setState(true);
         message.setMessage("修改帖子成功");
         return message;
@@ -106,15 +98,8 @@ public class PostContoller {
     @ApiOperation("删除帖子")
     @PostMapping(value = "/deleteposting")
     @AuthToken
-    public Message deletePosting(@RequestParam("token") String token,
-                                 @RequestParam("postingID") String postingID) throws IOException {
+    public Message deletePosting(@RequestParam("postingID") String postingID){
         Message message = new Message();
-        if (token == null) {
-            message.setState(false);
-            message.setMessage("请重新登录");
-            message.setAuthorizeToken(token);
-            return message;
-        }
 
         postingsMapper.deletePosting(postingID);
         message.setState(true);
