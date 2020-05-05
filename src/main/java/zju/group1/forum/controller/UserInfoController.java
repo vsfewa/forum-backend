@@ -32,7 +32,7 @@ public class UserInfoController {
     @ApiOperation("查看个人信息")
     @PostMapping(value = "/queryinfo")
     @AuthToken
-    public InfoMessage queryinfo(@RequestParam("token") String authorizaToken) throws IOException {
+    public InfoMessage queryinfo(@RequestParam("Authorization") String authorizaToken) throws IOException {
         InfoMessage infoMessage = new InfoMessage();
 
         if (authorizaToken == null) {
@@ -84,8 +84,7 @@ public class UserInfoController {
     @ApiOperation("修改个人信息")
     @PostMapping(value = "/editinfo")
     @AuthToken
-    public InfoMessage editinfo(@RequestParam("token") String token,
-                                @RequestParam("Authorization") String authorizaToken,
+    public InfoMessage editinfo(@RequestParam("Authorization") String authorizaToken,
                                 @RequestParam("birth") String birth,
                                 @RequestParam("birth_hidden") Integer birth_hidden,
                                 @RequestParam("gender") String gender,
