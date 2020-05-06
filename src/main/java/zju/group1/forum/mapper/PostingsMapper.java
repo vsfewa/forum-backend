@@ -22,7 +22,7 @@ public interface PostingsMapper {
     @Update("update posting set visitN = visitN + 1 where id = #{postingID}")
     void updateVisitNumber(String postingID);
 
-    @Insert("insert into posting (author,title,type,content,time) values (#{author},#{title},#{type},#{content},#{time})")
+    @Insert("insert into posting (author,title,type,content,time) values (#{author},#{title},#{type},#{content},now())")
     void Post(Posting newPosting);
     @Update("update posting set title=#{title},content=#{content} where id = #{id}")
     void modifyPosting(Posting newPosting);
