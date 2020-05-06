@@ -15,8 +15,8 @@ public interface PostingsMapper {
     List<Posting> listInformation();
     @Select("select * from posting where type = 4")
     List<Posting> listIntern();
-    @Select("select * from posting where author = #{email}")
-    List<Posting> listPersonalPostings(String email);
+    @Select("select * from posting where author = #{name}")
+    List<Posting> listPersonalPostings(String name);
     @Select("select * from posting where id = #{postingID}")
     Posting getPostingByID(String postingID);
     @Update("update posting set visitN = visitN + 1 where id = #{postingID}")
