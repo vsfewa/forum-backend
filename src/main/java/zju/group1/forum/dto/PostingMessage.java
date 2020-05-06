@@ -15,12 +15,12 @@ public class PostingMessage {
     private String author;
     private String title;
     private String content;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(
-            pattern = "yyyy-MM-dd HH:mm:ss",
-            timezone = "GMT+8"
-    )
-    private Date time;
+//    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    @JsonFormat(
+//            pattern = "yyyy-MM-dd HH:mm:ss",
+//            timezone = "GMT+8"
+//    )
+    private String time;
     private int replyN;
     private int visitN;
     private List<Reply> replyList;
