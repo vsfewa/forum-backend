@@ -10,6 +10,7 @@ import zju.group1.forum.dto.BoardMessage;
 import zju.group1.forum.dto.Posting;
 import zju.group1.forum.interceptor.AuthToken;
 import zju.group1.forum.mapper.PostingsMapper;
+import zju.group1.forum.mapper.UserMapper;
 import zju.group1.forum.provider.RedisProvider;
 
 import javax.annotation.Resource;
@@ -21,7 +22,8 @@ import java.util.List;
 public class PersonalPostingController {
     @Resource
     private PostingsMapper postingsMapper;
-
+    @Resource
+    private UserMapper userMapper;
     @Autowired
     private RedisProvider redisProvider;
 
@@ -43,8 +45,8 @@ public class PersonalPostingController {
             message.setAuthorizeToken(token);
             return message;
         }
-
-        List<Posting> postingList = postingsMapper.listPersonalPostings(email);
+        String name = userMapper.searchName(email);
+        List<Posting> postingList = postingsMapper.listPersonalPostings(name);
         message.setPostings(postingList);
         message.setMessage("获取个人所有发帖成功");
         return message;

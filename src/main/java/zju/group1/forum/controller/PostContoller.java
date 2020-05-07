@@ -61,8 +61,6 @@ public class PostContoller {
         newPosting.setTitle(title);
         newPosting.setContent(content);
         newPosting.setType(type);
-        Date date = new Date(System.currentTimeMillis());
-        newPosting.setTime(date);
         postingsMapper.Post(newPosting);
         message.setState(true);
         message.setMessage("发送帖子成功");
